@@ -1,0 +1,21 @@
+html 
+    head 
+        title Login 
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    body 
+        button(type='button', onclick='window.location.href=window.location.origin + "/netbank"') Back
+        br
+        h1 Login 
+        form(method="post", id="form")
+            label(for="user") User ID: 
+            input(type="number", name="user", min="0", max="2,147,483,647", required)
+            br
+            br
+            label(for="password") Password: 
+            input(type="password", name="password", required)
+            br
+            br
+            button(type="submit", id="submit") Login
+        if error 
+            br
+            p Unable to login: #{error}

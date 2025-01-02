@@ -1,0 +1,10 @@
+backend/node_modules/
+backend/.env
+bank-automat/env.cpp
+bank-automat/build/
+bank-automat/*.user
+bank-automat/bank-automat.pro.*
+pincodeDLL/build/
+pincodeDLL/pincodeDLL.pro.user
+pincodeDLL/pincodeDLL.pro.user.*
+build-bank-automat-Desktop*

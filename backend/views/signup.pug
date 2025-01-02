@@ -1,0 +1,43 @@
+script.
+    function checkPasswordMatch() {    
+        var pass1Box = document.getElementById("password1");
+        var pass2Box = document.getElementById("password2");
+        var errorLabel = document.getElementById("error");
+        var submitButton = document.getElementById("submit");
+        if (pass1Box.value != pass2Box.value) {
+            errorLabel.innerText = "Passwords don't match";
+            submitButton.disabled = true;
+        }
+        else {
+            errorLabel.innerText = "";
+            submitButton.disabled = false;
+        }
+    }
+
+html
+    head
+        title SimulBank
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    body
+        button(type="button" onclick='window.location.href = window.location.href=window.location.origin + "/netbank"') Back
+        br
+        br
+        h1 Sign up
+        form(method="post", id="form")
+            label(for="fname") First name: 
+            input(type="text", id="fname", name="fname", minlength="1", maxlength="45", required)
+            br
+            label(for="lname") Last name: 
+            input(type="text", name="lname", minlength="1", maxlength="45", required)
+            br
+            label(for="password1") Password: 
+            input(type="password", id="password1", name="password", onkeyup="checkPasswordMatch()", minlength="8" required)
+            br
+            label(for="password2") Enter the password again: 
+            input(type="password", id="password2", name="password2", onkeyup="checkPasswordMatch()", minlength="8" required)
+            br
+            button(type="submit", id="submit") Submit
+            label(for="submit", id="error")
+            br
+        if error 
+            p Error with signup: #{error}

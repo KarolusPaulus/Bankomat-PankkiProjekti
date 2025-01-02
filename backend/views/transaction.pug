@@ -1,0 +1,55 @@
+doctype html
+html
+    head
+        title Make a transaction 
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    body 
+        button(type='button', onclick='window.location.href=window.location.origin + "/netbank/home"') Back
+        br
+        h1 Make a transaction
+        if error 
+            p #{error}
+        else if success 
+            p #{success}
+        else
+            h2 List of transaction-capable accounts
+            p Choose an account:
+            form(method="post")
+                table(style='width:50%', border='1')
+                    tr 
+                        th Account ID
+                        th Account type
+                        th Balance
+                        th State
+                        th
+                    each id_account, index in accounts
+                        tr
+                            td #{accounts[index].id_account}
+                            if accounts[index].type == 0
+                                td Credit 
+                            else 
+                                td Debit
+                            td #{accounts[index].balance} €
+                            if accounts[index].state == null 
+                                td OK 
+                            else 
+                                td Restricted   
+                            td
+                                input(type="radio", value=accounts[index].id_account, name="senderAccount", required)                                           
+                    else 
+                        tr 
+                            td You have no accounts from which to transfer
+                            td -
+                            td -
+                            td -
+                            td
+                br
+                input(type="number", id="amount", name="amount", min=0.01, max=10000.00, step="0.01", required)
+                label(for="user")  Amount
+                br
+                br
+                input(type="text", id="receiverAccount", name="receiverAccount", minlength="5", maxlength="20", required)
+                label(for="user")  ID of receiving account
+                br
+                br
+                button(type="submit", id="submit", name="submit") Transfer

@@ -1,0 +1,25 @@
+html
+    head
+        title Home
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    body 
+        button(type="button" onclick='window.location.href=window.location.origin + "/netbank/logout"') Log out
+        br
+        if name 
+            h1 Welcome to SimulBank, #{name}!
+        else 
+            h1 Welcome to SimulBank!
+        p View your profile here: 
+        button(type="button" onclick='window.location.href=window.location.origin + "/netbank/profile"') Profile
+        br
+        br
+        p Make a transaction here: 
+        button(type="button" onclick='window.location.href=window.location.origin + "/netbank/transaction"') Transaction
+        br
+        br
+        p Need more financing options? Open a new card or account below:
+        button(type="button" onclick='window.location.href=window.location.origin + "/netbank/newservices"') Services
+        br
+        br
+        p Authorize access to your account for another user here:
+        button(type="button" onclick='window.location.href=window.location.origin + "/netbank/authorization"') Authorization

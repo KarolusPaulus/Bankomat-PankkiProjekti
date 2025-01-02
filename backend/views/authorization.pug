@@ -1,0 +1,113 @@
+script.
+    function acceptChecked(accept, error, submit) {    
+        let box = document.getElementById(accept);
+        let errorLabel = document.getElementById(error);
+        let submitButton = document.getElementById(submit);
+        if (box.checked) {
+            errorLabel.innerText = "";
+            submitButton.disabled = false;
+        }
+        else {
+            errorLabel.innerText = "You must accept the terms and conditions to proceed";
+            submitButton.disabled = true;
+        }
+    }
+
+html 
+    head 
+        title Authorize a card
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+    body 
+        button(type='button', onclick='window.location.href=window.location.origin + "/netbank/home"') Back
+        br
+        br   
+        h1 Authorization
+        br
+        br       
+        if error 
+            p #{error}
+        else if success 
+            p #{success}
+        else
+            h2 Your authorizations: 
+            table(style='width:60%', border='1')
+                tr 
+                    th User ID
+                    th Account ID
+                    th Balance
+                    th Account type 
+                    th Credit limit
+                    th State
+                each id_account, index in authorizations
+                    tr
+                        td #{authorizations[index].attached_user}
+                        td #{authorizations[index].id_account}
+                        td #{authorizations[index].balance} €
+                        if authorizations[index].type == 0
+                            td Credit
+                            td #{authorizations[index].credit_limit}
+                        else
+                            td Debit
+                            td -   
+                        if authorizations[index].state == null 
+                            td OK 
+                        else 
+                            td Restricted     
+                        td 
+                            form(method="post", action="/netbank/authorization/removeauthorization")  
+                                button(type="submit", id="account", name="accountuserpair", value=authorizations[index].attached_user + "/" + authorizations[index].id_account) Remove                              
+                else 
+                    tr 
+                        td You haven't authorized access to any of your accounts
+                        td -
+                        td -
+                        td -
+                        td -
+                        td -
+                        td - 
+            br
+            br     
+            h2 Authorize a card for another user: 
+            form(method="post", id="authorizeUser", action="/netbank/authorization/authorizeuser")
+                h3 Your accounts:
+                table(style='width:60%', border='1')
+                    tr 
+                        th Account ID
+                        th Balance
+                        th Credit limit
+                        th State
+                    each id_account, i in accounts
+                        tr
+                            td #{accounts[i].id_account}
+                            td #{accounts[i].balance} €
+                            if accounts[i].type == 0
+                                td #{accounts[i].credit_limit}
+                            else 
+                                td -
+                            if accounts[i].state == null 
+                                td OK 
+                            else 
+                                td Restricted 
+                            td
+                                input(type="radio", value=accounts[i].id_account, name="account")                                        
+                    else 
+                        tr 
+                            td You have no accounts
+                            td -
+                            td -
+                            td -
+                            td
+                br
+                label(for="user") ID of user: 
+                input(type="number", id="user", name="user", min=1, max=2000000, required)
+                br
+                br
+                p By authorizing access to my account I agree to bear all responsibility for actions
+                p taken by the authorizee.
+                input(type="checkbox", id="authorizeAccept", name="accept", onchange="acceptChecked('authorizeAccept', 'authorizeError', 'authorizeSubmit')")
+                label(for="authorizeAccept") Accept
+                br
+                br
+                button(type="submit", id="authorizeSubmit", disabled=true) Authorize
+                label(for="authorizeSubmit", id="authorizeError", innerText="You must accept the terms and conditions to open an account")

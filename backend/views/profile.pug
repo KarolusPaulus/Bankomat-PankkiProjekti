@@ -1,0 +1,108 @@
+doctype html
+html
+    head
+        title Your information 
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    body 
+        button(type='button', onclick='window.location.href=window.location.origin + "/netbank/home"') Back
+        br
+        h1 Your information
+        if error 
+            p Error with getting data
+        else
+            if name
+                h3 Name: #{name}
+            else 
+                h3 Name: error with getting data
+            if id
+                h3 User ID: #{id}
+            else 
+                h3 User ID: error with getting data
+            p Personal accounts: 
+            table(style='width:60%', border='1')
+                tr 
+                    th Account ID
+                    th Balance
+                    th Account type 
+                    th Credit limit
+                    th State
+                each id_account, index in accounts
+                    tr
+                        td #{accounts[index].id_account}
+                        td #{accounts[index].balance} €
+                        if accounts[index].type == 0
+                            td Credit
+                            td #{accounts[index].credit_limit}
+                        else
+                            td Debit
+                            td -   
+                        if accounts[index].state == null 
+                            td OK 
+                        else 
+                            td Restricted                                             
+                else 
+                    tr 
+                        td You have no accounts
+                        td -
+                        td -
+                        td -
+                        td -
+            br
+            p Authorized accounts: 
+            table(style='width:60%', border='1')
+                tr 
+                    th Account ID
+                    th Balance
+                    th Account type 
+                    th Credit limit
+                    th State
+                each id_account, index in authorizedAccounts
+                    tr
+                        td #{authorizedAccounts[index].id_account}
+                        td #{authorizedAccounts[index].balance} €
+                        if authorizedAccounts[index].type == 0
+                            td Credit
+                            td #{authorizedAccounts[index].credit_limit} €
+                        else
+                            td Debit
+                            td -   
+                        if authorizedAccounts[index].state == null 
+                            td OK 
+                        else 
+                            td Restricted                                             
+                else 
+                    tr 
+                        td You don't have access to any accounts
+                        td -
+                        td -
+                        td -
+                        td -
+            br
+            p Cards: 
+            table(style='width:60%', border='1')
+                tr 
+                    th Card ID
+                    th Type
+                    th Attached account
+                    th Expiration
+                    th State
+                each id_card, index in cards
+                    tr
+                        td #{cards[index].id_card}
+                        if cards[index].type == 0   
+                            td Credit
+                        else
+                            td Debit
+                        td #{cards[index].id_account}
+                        td #{cards[index].expiration}    
+                        if cards[index].state == null && (cards[index].temp_restriction == null || cards[index].temp_restriction < cards[index].curr_time)
+                            td OK 
+                        else 
+                            td Restricted            
+                else 
+                    tr 
+                        td You have no cards
+                        td -
+                        td -
+                        td -
+                        td -
