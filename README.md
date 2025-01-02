@@ -20,31 +20,31 @@ The frontend was written in C++ and used Qt Creator's UI tools. The backend was 
 
 ## Samples
 #### The card reader and "cards" used
-![Faux cards](readme_images/bankomat_cards.png?raw=true "Faux cards")
+![Faux cards](/readme_images/bankomat_cards.png?raw=true "Faux cards")
 
 #### Starting window with PIN entry
-![PIN request](readme_images/bankomat_pin.png?raw=true "PIN request")
+![PIN request](/readme_images/bankomat_pin.png?raw=true "PIN request")
 
 #### Main menu
-![Bankomat main page](readme_images/bankomat_menu.png?raw=true "Bankomat main page")
+![Bankomat main page](/readme_images/bankomat_menu.png?raw=true "Bankomat main page")
 
 #### User profile window
-![Bankomat user details](readme_images/bankomat_user.png?raw=true "Bankomat user details")
+![Bankomat user details](/readme_images/bankomat_user.png?raw=true "Bankomat user details")
 
 #### Snippet from the Swagger page
-![Swagger page](readme_images/swagger.png?raw=true "Swagger page")
+![Swagger page](/readme_images/swagger.png?raw=true "Swagger page")
 
 #### The structure of the system
-![General structure](readme_images/structure.png?raw=true "General structure")
+![General structure](/readme_images/structure.png?raw=true "General structure")
 
 #### The structure of the database
-![Database structure](readme_images/database.png?raw=true "Database structure")
+![Database structure](/readme_images/database.png?raw=true "Database structure")
 
 #### The logic behind the Bankomat
-![Bankomat logic graph](readme_images/bankomat_logic.png?raw=true "Bankomat logic graph")
+![Bankomat logic graph](/readme_images/bankomat_logic.png?raw=true "Bankomat logic graph")
 
 #### Netbank's user profile page
-![Netbank user details](readme_images/netbank_profile.png?raw=true "Netbank user details")
+![Netbank user details](/readme_images/netbank_profile.png?raw=true "Netbank user details")
 
 #### Youtube demo (in Finnish)
 [![Demo](https://img.youtube.com/vi/evrqCWDBZTA/0.jpg)](https://www.youtube.com/watch?v=evrqCWDBZTA)
