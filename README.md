@@ -34,7 +34,7 @@ The frontend was written in C++ and used Qt Creator's UI tools. The backend was 
 #### Snippet from the Swagger page
 ![Swagger page](/readme_images/swagger.png?raw=true "Swagger page")
 
-#### The structure of the system
+#### The structure of the system te
 ![General structure](/readme_images/structure.png?raw=true "General structure")
 
 #### The structure of the database
